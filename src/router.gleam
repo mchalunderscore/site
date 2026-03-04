@@ -17,57 +17,7 @@ pub fn handle_request(req: Request, ctx: types.AppContext) -> Response {
 }
 
 fn handle_home(ctx: types.AppContext) -> Response {
-  let #(stats, repos, api_error) = case cache.get_stats(ctx.cache) {
-    Ok(stats) -> {
-      case cache.get_repos(ctx.cache) {
-        Ok(repos) -> #(stats, repos, False)
-        Error(_) -> #(stats, [], False)
-      }
-    }
-    Error(_) -> {
-      case github_api.fetch_user_stats(ctx.github_username) {
-        Ok(user_stats) -> {
-          case github_api.fetch_repos(ctx.github_username) {
-            Ok(repos) -> {
-              let total_stars = github_api.calculate_total_stars(repos)
-              let languages = github_api.count_languages(repos)
-              let full_stats =
-                GitHubStats(
-                  ..user_stats,
-                  stars: total_stars,
-                  languages: languages,
-                )
-              cache.set_stats(ctx.cache, full_stats)
-              cache.set_repos(ctx.cache, repos)
-              #(full_stats, repos, False)
-            }
-            Error(_) -> {
-              let fallback_stats =
-                GitHubStats(
-                  repos: 0,
-                  followers: 0,
-                  following: 0,
-                  stars: 0,
-                  languages: 0,
-                )
-              #(fallback_stats, [], True)
-            }
-          }
-        }
-        Error(_) -> {
-          let fallback_stats =
-            GitHubStats(
-              repos: 0,
-              followers: 0,
-              following: 0,
-              stars: 0,
-              languages: 0,
-            )
-          #(fallback_stats, [], True)
-        }
-      }
-    }
-  }
+  use stats, repos, api_error <- get_github_data(ctx)
 
   let html_content =
     home.page(stats, repos, api_error)
@@ -78,4 +28,54 @@ fn handle_home(ctx: types.AppContext) -> Response {
   |> response.set_body(wisp.Text(html_content))
   |> response.set_header("content-type", "text/html; charset=utf-8")
   |> response.set_header("cache-control", "public, max-age=300")
+}
+
+fn get_github_data(
+  ctx: types.AppContext,
+  handler: fn(types.GitHubStats, List(types.GitHubRepo), Bool) -> Response,
+) -> Response {
+  case cache.get_stats(ctx.cache) {
+    Ok(stats) -> {
+      let repos = case cache.get_repos(ctx.cache) {
+        Ok(repos) -> repos
+        Error(_) -> []
+      }
+      handler(stats, repos, False)
+    }
+    Error(_) -> load_from_api(ctx, handler)
+  }
+}
+
+fn load_from_api(
+  ctx: types.AppContext,
+  handler: fn(types.GitHubStats, List(types.GitHubRepo), Bool) -> Response,
+) -> Response {
+  let username = ctx.github_username
+
+  case github_api.fetch_user_stats(username) {
+    Ok(user_stats) ->
+      case github_api.fetch_repos(username) {
+        Ok(repos) -> {
+          let full_stats = merge_stats(user_stats, repos)
+          cache.set_stats(ctx.cache, full_stats)
+          cache.set_repos(ctx.cache, repos)
+          handler(full_stats, repos, False)
+        }
+        Error(_) -> handler(fallback_stats(), [], True)
+      }
+    Error(_) -> handler(fallback_stats(), [], True)
+  }
+}
+
+fn merge_stats(
+  user_stats: types.GitHubStats,
+  repos: List(types.GitHubRepo),
+) -> types.GitHubStats {
+  let total_stars = github_api.calculate_total_stars(repos)
+  let languages = github_api.count_languages(repos)
+  GitHubStats(..user_stats, stars: total_stars, languages: languages)
+}
+
+fn fallback_stats() -> types.GitHubStats {
+  GitHubStats(repos: 0, followers: 0, following: 0, stars: 0, languages: 0)
 }

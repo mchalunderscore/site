@@ -45,6 +45,25 @@ pub fn project_card(
   forks: Int,
   url: String,
 ) -> Element(a) {
+  let stats_items =
+    []
+    |> list.append(case stars {
+      0 -> []
+      n -> [
+        html.span([attribute.class("project-stat")], [
+          html.text("⭐ " <> int.to_string(n)),
+        ]),
+      ]
+    })
+    |> list.append(case forks {
+      0 -> []
+      n -> [
+        html.span([attribute.class("project-stat")], [
+          html.text("🍴 " <> int.to_string(n)),
+        ]),
+      ]
+    })
+
   html.a(
     [
       attribute.href(url),
@@ -79,22 +98,7 @@ pub fn project_card(
                 html.text(language),
               ])
           },
-          html.div([attribute.class("project-stats")], [
-            case stars {
-              0 -> html.text("")
-              n ->
-                html.span([attribute.class("project-stat")], [
-                  html.text("⭐ " <> int.to_string(n)),
-                ])
-            },
-            case forks {
-              0 -> html.text("")
-              n ->
-                html.span([attribute.class("project-stat")], [
-                  html.text("🍴 " <> int.to_string(n)),
-                ])
-            },
-          ]),
+          html.div([attribute.class("project-stats")], stats_items),
         ]),
       ]),
     ],

@@ -1,3 +1,4 @@
+import birl
 import gleam/dict
 import gleam/erlang/process.{type Subject, call, send}
 import gleam/otp/actor
@@ -78,9 +79,5 @@ fn handle_message(message: CacheMessage, state: CacheState) {
 }
 
 fn get_timestamp() -> Int {
-  let now = erlang_now()
-  now
+  birl.now() |> birl.to_unix()
 }
-
-@external(erlang, "erlang", "system_time")
-fn erlang_now() -> Int
