@@ -1,6 +1,6 @@
 name = "site"
 version = "1.0.0"
-description = "Jastrzymb personal site in Gleam"
+description = "Jastrzůmb personal site in Gleam"
 
 [dependencies]
 gleam_stdlib = ">= 0.34.0 and < 0.38.0"

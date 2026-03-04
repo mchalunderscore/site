@@ -14,7 +14,7 @@ pub fn base(title: String, content: List(Element(a))) -> Element(a) {
         attribute.name("description"),
         attribute.attribute(
           "content",
-          "Michal S. (Jastrzymb) - Functional programming enthusiast and developer. Rust, Gleam, Python.",
+          "Michal S. (Jastrzůmb) - Functional programming enthusiast and developer. Rust, Gleam, Python.",
         ),
       ]),
       html.meta([
@@ -33,7 +33,7 @@ pub fn base(title: String, content: List(Element(a))) -> Element(a) {
         attribute.attribute("property", "og:description"),
         attribute.attribute(
           "content",
-          "Michal S. (Jastrzymb) - Functional programming enthusiast and developer.",
+          "Michal S. (Jastrzůmb) - Functional programming enthusiast and developer.",
         ),
       ]),
       html.meta([
@@ -60,7 +60,7 @@ pub fn base(title: String, content: List(Element(a))) -> Element(a) {
         attribute.attribute("name", "twitter:description"),
         attribute.attribute(
           "content",
-          "Michal S. (Jastrzymb) - Functional programming enthusiast and developer.",
+          "Michal S. (Jastrzůmb) - Functional programming enthusiast and developer.",
         ),
       ]),
       html.meta([
@@ -69,7 +69,7 @@ pub fn base(title: String, content: List(Element(a))) -> Element(a) {
       ]),
       html.script(
         [attribute.attribute("type", "application/ld+json")],
-        "{\"@context\":\"https://schema.org\",\"@type\":\"Person\",\"name\":\"Michal S.\",\"alternateName\":\"Jastrzymb\",\"jobTitle\":\"Developer and Project Lead\",\"url\":\"https://mchal.lol/\",\"sameAs\":[\"https://github.com/jastrzymb\",\"mailto:me@mchal.lol\"],\"knowsAbout\":[\"Functional Programming\",\"Rust\",\"Gleam\",\"Python\",\"Type Systems\"]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Person\",\"name\":\"Michal S.\",\"alternateName\":\"Jastrzůmb\",\"jobTitle\":\"Developer and Project Lead\",\"url\":\"https://mchal.lol/\",\"sameAs\":[\"https://github.com/jastrzumb\",\"mailto:me@mchal.lol\"],\"knowsAbout\":[\"Functional Programming\",\"Rust\",\"Gleam\",\"Python\",\"Type Systems\"]}",
       ),
       html.title([], title),
       html.link([
@@ -107,7 +107,7 @@ fn navigation() -> Element(a) {
   html.nav([attribute.id("navbar"), attribute.class("nav")], [
     html.div([attribute.class("nav-container")], [
       html.a([attribute.href("#"), attribute.class("logo")], [
-        html.text("┌Jastrzymb┐"),
+        html.text("┌Jastrzůmb┐"),
       ]),
       html.div([attribute.class("nav-links")], [
         html.a([attribute.href("#about")], [html.text("About")]),
@@ -122,7 +122,7 @@ fn navigation() -> Element(a) {
       ]),
       html.a(
         [
-          attribute.href("https://github.com/jastrzymb"),
+          attribute.href("https://github.com/jastrzumb"),
           attribute.attribute("target", "_blank"),
           attribute.attribute("rel", "noopener noreferrer"),
           attribute.class("github-link"),

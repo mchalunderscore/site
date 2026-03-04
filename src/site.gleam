@@ -23,7 +23,7 @@ pub fn main() {
 
   let github_username =
     get_env("GITHUB_USERNAME")
-    |> result.unwrap("jastrzymb")
+    |> result.unwrap("jastrzumb")
 
   case cache.new() {
     Error(_) -> {

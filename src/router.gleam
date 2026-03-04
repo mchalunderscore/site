@@ -21,7 +21,7 @@ fn handle_home(ctx: types.AppContext) -> Response {
 
   let html_content =
     home.page(stats, repos, api_error)
-    |> layout.base("Jastrzymb - Functional Programming Enthusiast", _)
+    |> layout.base("Jastrzůmb - Functional Programming Enthusiast", _)
     |> element.to_document_string_builder()
 
   response.new(200)

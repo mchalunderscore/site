@@ -51,7 +51,7 @@ fn make_github_request(url: String) -> Result(String, ApiError) {
       let req_with_headers =
         req
         |> request.set_header("Accept", "application/vnd.github.v3+json")
-        |> request.set_header("User-Agent", "jastrzymb-site-gleam")
+        |> request.set_header("User-Agent", "jastrzumb-site-gleam")
 
       case httpc.send(req_with_headers) {
         Ok(resp) -> {

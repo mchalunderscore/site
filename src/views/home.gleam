@@ -66,7 +66,7 @@ fn hero_section(stats: GitHubStats) -> Element(a) {
       html.div([attribute.class("hero-content")], [
         html.p([attribute.class("hero-label")], [html.text("┌─ developer ─┐")]),
         html.h1([attribute.class("hero-title"), attribute.id("typewriter")], [
-          html.text("Jastrzymb"),
+          html.text("Jastrzůmb"),
         ]),
         html.p([attribute.class("hero-pronunciation")], [
           html.text("/ˈjas.tʂɘmp/ ─ Eurasian Goshawk"),
@@ -139,7 +139,7 @@ fn about_section() -> Element(a) {
             html.text("Hi, I'm "),
             html.strong([], [html.text("Michal S.")]),
             html.text(" (also known as "),
-            html.span([attribute.class("highlight")], [html.text("Jastrzymb")]),
+            html.span([attribute.class("highlight")], [html.text("Jastrzůmb")]),
             html.text(
               "), a Rust/Python/Gleam developer & Project Lead with almost a decade of experience.",
             ),
@@ -244,7 +244,7 @@ fn projects_section(repos: List(GitHubRepo)) -> Element(a) {
           ],
           [
             components.btn_secondary(
-              "https://github.com/jastrzymb?tab=repositories",
+              "https://github.com/jastrzumb?tab=repositories",
               "View All Repositories →",
             ),
           ],
@@ -289,7 +289,7 @@ fn orgs_section() -> Element(a) {
             "🔒",
             "active",
             [#("Nix", "#7e7eff")],
-            "https://github.com/jastrzymb/distrust",
+            "https://github.com/jastrzumb/distrust",
           ),
           components.org_card(
             "u64.co.uk",
@@ -362,8 +362,8 @@ fn contact_section() -> Element(a) {
           components.contact_link(
             "⚡",
             "GitHub",
-            "@jastrzymb",
-            "https://github.com/jastrzymb",
+            "@jastrzumb",
+            "https://github.com/jastrzumb",
           ),
           html.div(
             [
@@ -452,7 +452,7 @@ fn footer() -> Element(a) {
         html.div([attribute.class("footer-links")], [
           html.a(
             [
-              attribute.href("https://github.com/jastrzymb"),
+              attribute.href("https://github.com/jastrzumb"),
               attribute.attribute("target", "_blank"),
               attribute.attribute("rel", "noopener noreferrer"),
             ],
@@ -503,7 +503,7 @@ fn default_projects() -> List(Element(a)) {
       "#ef7a08",
       0,
       0,
-      "https://github.com/jastrzymb/clip",
+      "https://github.com/jastrzumb/clip",
     ),
     components.project_card(
       "the-haiku-license",
@@ -512,7 +512,7 @@ fn default_projects() -> List(Element(a)) {
       "#7e7eff",
       0,
       0,
-      "https://github.com/jastrzymb/the-haiku-license",
+      "https://github.com/jastrzumb/the-haiku-license",
     ),
     components.project_card(
       "pronounce",
@@ -521,7 +521,7 @@ fn default_projects() -> List(Element(a)) {
       "#3572A5",
       4,
       0,
-      "https://github.com/jastrzymb/pronounce",
+      "https://github.com/jastrzumb/pronounce",
     ),
     components.project_card(
       "rpass",
@@ -530,7 +530,7 @@ fn default_projects() -> List(Element(a)) {
       "#dea584",
       0,
       0,
-      "https://github.com/jastrzymb/rpass",
+      "https://github.com/jastrzumb/rpass",
     ),
     components.project_card(
       "nofetch",
@@ -539,7 +539,7 @@ fn default_projects() -> List(Element(a)) {
       "#89e051",
       8,
       4,
-      "https://github.com/jastrzymb/nofetch",
+      "https://github.com/jastrzumb/nofetch",
     ),
     components.project_card(
       "nolicense",
@@ -548,7 +548,7 @@ fn default_projects() -> List(Element(a)) {
       "#8d6e63",
       3,
       0,
-      "https://github.com/jastrzymb/nolicense",
+      "https://github.com/jastrzumb/nolicense",
     ),
   ]
 }
