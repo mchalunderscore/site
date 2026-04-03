@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Michal S.</title>
+  <style>
+    /* ── Original variables & base (verbatim from mchal.lol) ── */
+    :root {
+      --div-background: darkblue;
+      --tabs-background: #00006b;
+      --background: #181818;
+      --foreground: white;
+      --accent: yellow;
+    }
+
+    body {
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: monospace;
+      font-size: large;
+      width: 90%;
+      max-width: 700px;
+      margin: 0px auto;
+      padding-top: 10vh;
+      padding-bottom: 5vh;
+    }
+
+    .bottom, sup {
+      color: var(--accent);
+      font-size: medium;
+      text-align: center;
+    }
+
+    .spread {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .main {
+      background-color: var(--div-background);
+      padding: 5px 30px 20px;
+      box-shadow: black 10px 10px 0px 0px;
+    }
+
+    .toplinks {
+      float: left;
+      margin-top: -30px;
+      margin-left: -30px;
+      background: var(--tabs-background);
+      padding: 4px;
+    }
+
+    .toplinks a {
+      cursor: pointer;
+      text-decoration: none;
+      padding: 0 3px;
+    }
+
+    .toplinks a:hover { text-decoration: underline; }
+
+    .toplinks a.active {
+      text-decoration: underline;
+      background: var(--div-background);
+    }
+
+    .badges {
+      font-size: 0px;
+      padding-top: 5pt;
+      padding-bottom: 5pt;
+    }
+
+    .icon {
+      fill: var(--accent);
+      stroke: var(--accent);
+      float: right;
+      margin-left: 10px;
+    }
+
+    img {
+      image-rendering: pixelated;
+      width: 88px;
+      height: 31px;
+      object-fit: cover;
+    }
+
+    svg { fill: var(--accent); }
+
+    a, hr { color: var(--accent); }
+
+    ul { list-style: "- "; }
+
+    summary { list-style-type: "> "; }
+    summary::marker { color: var(--accent); }
+    details[open] > summary { list-style-type: "v "; }
+
+    button {
+      background-color: var(--div-background);
+      font-size: large;
+      font-family: monospace;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      cursor: pointer;
+    }
+
+    button:active {
+      background-color: var(--accent);
+      color: var(--div-background);
+    }
+
+    /* ── Page switching ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── Portfolio additions (same aesthetic) ── */
+
+    .section-label {
+      color: var(--accent);
+      font-size: small;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0;
+      margin-top: 1.6em;
+      opacity: 0.75;
+    }
+
+    .section-label::before { content: "// "; }
+
+    .hero-name {
+      font-size: 2.2em;
+      font-weight: bold;
+      margin: 0.1em 0 0;
+      line-height: 1.1;
+    }
+
+    .hero-tagline {
+      color: var(--foreground);
+      opacity: 0.75;
+      font-size: 0.9em;
+      margin: 0.3em 0 0.6em;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 0.5em 0;
+    }
+
+    .tag {
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: small;
+      padding: 1px 7px;
+      white-space: nowrap;
+    }
+
+    .tag.dim {
+      border-color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.5);
+    }
+
+    .project-card {
+      border-left: 2px solid var(--accent);
+      padding: 6px 0 6px 14px;
+      margin: 0.9em 0;
+    }
+
+    .project-card .proj-title {
+      color: var(--accent);
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .project-card .proj-title:hover { text-decoration: underline; }
+
+    .project-card .proj-role {
+      font-size: small;
+      opacity: 0.65;
+      margin-left: 0.5em;
+    }
+
+    .project-card p {
+      margin: 0.2em 0 0.4em;
+      font-size: 0.9em;
+      opacity: 0.9;
+    }
+
+    .project-card .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 0.3em;
+    }
+
+    .project-card .proj-tags span {
+      font-size: x-small;
+      border: 1px solid rgba(255,255,200,0.3);
+      color: rgba(255,255,200,0.6);
+      padding: 0 5px;
+    }
+
+    .contact-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 0.5em 0;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px 20px;
+      font-size: 0.85em;
+      margin: 0.5em 0;
+    }
+
+    .stat-grid .stat-key { opacity: 0.6; }
+    .stat-grid .stat-val { color: var(--accent); }
+
+    .divider {
+      border: none;
+      border-top: 1px dashed rgba(255,255,0,0.3);
+      margin: 1.2em 0;
+    }
+
+    .crypto-block {
+      font-size: small;
+      opacity: 0.7;
+      word-break: break-all;
+      margin: 0.2em 0;
+    }
+
+    .crypto-block .coin { color: var(--accent); opacity: 1; }
+
+    .header-icons { display: flex; gap: 8px; align-items: center; }
+
+    .friends-label {
+      font-size: small;
+      text-align: center;
+      opacity: 0.65;
+      margin: 0.8em 0 0.3em;
+    }
+
+    .footer-copy {
+      text-align: center;
+      font-size: x-small;
+      opacity: 0.45;
+      margin-top: 1.8em;
+      color: var(--foreground);
+    }
+
+    /* ── Keys page ── */
+    .key-block {
+      border-left: 2px solid var(--accent);
+      padding: 6px 0 6px 14px;
+      margin: 0.9em 0;
+    }
+
+    .key-block h3 {
+      margin: 0 0 0.4em;
+      font-size: 1em;
+      color: var(--accent);
+    }
+
+    .key-block pre {
+      font-size: x-small;
+      white-space: pre-wrap;
+      word-break: break-all;
+      margin: 0;
+      opacity: 0.85;
+      background: rgba(0,0,0,0.25);
+      padding: 8px;
+      line-height: 1.5;
+    }
+
+    .copy-btn {
+      font-size: x-small;
+      padding: 1px 8px;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════
+     SHARED HEADER
+════════════════════════ -->
+<div class="main" id="header-card">
+  <div class="toplinks">
+    <a onclick="showPage('home')" id="tab-home" class="active">Home.html</a>
+    <a onclick="showPage('about')" id="tab-about">About.html</a>
+    <a onclick="showPage('keys')" id="tab-keys">Keys.html</a>
+  </div>
+
+  <div class="spread" style="margin-top: 1.4em;">
+    <div>
+      <p class="section-label" style="margin-top:0;">identity</p>
+      <h1 class="hero-name">Michal S.<sup id="age"></sup></h1>
+      <p class="hero-tagline">Rust / Python / Gleam developer &amp; Project Lead</p>
+    </div>
+    <div class="header-icons">
+      <a href="https://github.com/jastrzumb" title="GitHub" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg" style="fill:var(--accent);">
+          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <span class="stat-key">pronouns</span><span class="stat-val">he/they, vi/vim</span>
+    <span class="stat-key">editor</span><span class="stat-val">vim</span>
+    <span class="stat-key">languages</span><span class="stat-val">EN / PL</span>
+    <span class="stat-key">available</span><span class="stat-val">for collabs :-)</span>
+  </div>
+</div>
+
+<!-- ════════════════════════
+     PAGE: HOME
+════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <div class="main" style="margin-top: 24px;">
+    <p class="section-label" style="margin-top:0.8em;">skills &amp; stack</p>
+    <p style="font-size:0.85em; opacity:0.7; margin-top:0.3em;">languages</p>
+    <div class="tag-row">
+      <span class="tag">Rust</span><span class="tag">Gleam</span><span class="tag">Python</span>
+      <span class="tag dim">OCaml</span><span class="tag dim">C</span><span class="tag dim">TypeScript</span>
+    </div>
+    <p style="font-size:0.85em; opacity:0.7; margin-top:0.8em;">domains</p>
+    <div class="tag-row">
+      <span class="tag">Embedded / ESP32</span><span class="tag">Self-Hosting</span>
+      <span class="tag">DevOps</span><span class="tag">Project Management</span>
+      <span class="tag dim">Game Modding</span>
+    </div>
+    <p style="font-size:0.85em; opacity:0.7; margin-top:0.8em;">tools</p>
+    <div class="tag-row">
+      <span class="tag">Vim</span><span class="tag">Git</span>
+      <span class="tag dim">Linux</span><span class="tag dim">Docker</span><span class="tag dim">BEAM/OTP</span>
+    </div>
+  </div>
+
+  <div class="main" style="margin-top: 24px;">
+    <p class="section-label" style="margin-top:0.8em;">projects</p>
+    <p style="font-size:0.85em; opacity:0.65; margin-top:0.2em; margin-bottom:0.8em;">A selection of things I've built, led, or contributed to.</p>
+
+    <div class="project-card">
+      <a class="proj-title" href="https://github.com/lastnightlabs" target="_blank" rel="noopener">Last Night Labs</a>
+      <span class="proj-role">[ the other guy ]</span>
+      <p>Two guys making things that don't suck.</p>
+      <div class="proj-tags"><span>TypeScript</span><span>privacy focused</span><span>sensible</span><span>web applications</span></div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="project-card">
+      <a class="proj-title" href="https://read.adastra.wtf" target="_blank" rel="noopener">Ad Astra</a>
+      <span class="proj-role">[ project lead ]</span>
+      <p>A multimedia adventure inspired by Homestuck — spanning both a webcomic and a visual novel game.</p>
+      <div class="proj-tags"><span>visual novel</span><span>webcomic</span><span>project management</span></div>
+    </div>
+  </div>
+
+  <div class="main" style="margin-top: 24px;">
+    <p class="section-label" style="margin-top:0.8em;">contact</p>
+    <p style="margin: 0.6em 0 0.3em; font-size:0.95em;">Got a project in mind, want to collaborate, or just want to say hi?</p>
+    <div class="contact-line">
+      <span>&#x25B6;</span>
+      <a href="mailto:me@mchal.lol">me@mchal.lol</a>
+    </div>
+    <hr class="divider" />
+    <details>
+      <summary style="cursor:pointer; font-size:0.9em; opacity:0.8;">crypto donations (I am <a href="https://www.urbandictionary.com/define.php?term=skint" target="_blank" rel="noopener">skint</a>)</summary>
+      <div style="margin-top: 0.6em;">
+        <p class="crypto-block"><span class="coin">BTC</span> bc1qveg345uf5chyf6amtza7mcwlynnkk5yjeme6xf<br><small style="opacity:0.5;">Bitcoin Network</small></p>
+        <p class="crypto-block"><span class="coin">ETH</span> 0x6fE2eA85BA259605f39F3a800EE4F8f12F4D3908<br><small style="opacity:0.5;">Ethereum Network</small></p>
+      </div>
+    </details>
+  </div>
+
+</div><!-- /page-home -->
+
+
+<!-- ════════════════════════
+     PAGE: ABOUT
+════════════════════════ -->
+<div id="page-about" class="page">
+
+  <div class="main" style="margin-top: 24px;">
+    <p class="section-label" style="margin-top:0.8em;">about me</p>
+
+    <p style="margin-top: 0.8em; line-height: 1.6;">
+      I'm Michal — a developer and project lead based in the UK, with close to a decade of experience across
+      software engineering, devops, and project management. By day I work in sales for a UK telco; outside of
+      that I gravitate toward work that's technically interesting and genuinely useful. I try to create novel 
+      solutions to problems I care about, and I have a soft spot for projects that are a little weird or unconventional. 
+    </p>
+
+    <p style="line-height: 1.6;">
+      My main languages are Rust, Gleam, and Python. I've also done some work in OCaml.
+      Outside of code I've contributed to game modding projects and helped run small creative collaborations,
+      so I'm comfortable bridging technical and non-technical work.
+    </p>
+
+    <hr class="divider" />
+
+    <p class="section-label">outside of work</p>
+    <p style="margin-top: 0.6em; line-height: 1.6;">
+      I play guitar, though not as much as I'd like. I have a soft spot for birds of all kinds, and keep a cockatoo. I'm also colour-blind,
+      which occasionally makes CSS and design an adventure.
+    </p>
+
+    <hr class="divider" />
+
+    <p class="section-label">where to find me</p>
+    <p style="margin-top: 0.6em; line-height: 1.6;">
+      I don't really do social media. The best places to reach me are
+      <a href="https://github.com/jastrzumb" target="_blank" rel="noopener">GitHub</a> for code,
+      Discord at <span style="color:var(--accent);">@mchal_</span> for everything else,
+      or just email at <a href="mailto:me@mchal.lol">me@mchal.lol</a>.
+    </p>
+
+    <hr class="divider" />
+
+    <details>
+      <summary style="cursor:pointer; font-size:0.9em; opacity:0.8;">colourblind mode</summary>
+      <p style="font-size:0.85em; opacity:0.75; margin-top:0.5em;">See how this site looks to me with adjusted colours.</p>
+      <button onclick="toggleColorBlindMode()">enable colourblind palette</button>
+      <button onclick="resetColors()" style="margin-left:8px;">reset</button>
+    </details>
+  </div>
+
+</div><!-- /page-about -->
+
+
+<!-- ════════════════════════
+     PAGE: KEYS
+════════════════════════ -->
+<div id="page-keys" class="page">
+
+  <div class="main" style="margin-top: 24px;">
+    <p class="section-label" style="margin-top:0.8em;">public keys</p>
+    <p style="font-size:0.85em; opacity:0.65; margin-top:0.3em;">For encrypted comms or verifying my identity.</p>
+
+    <div class="key-block">
+      <h3>SSH</h3>
+      <pre id="ssh-key">ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJpHmnyG+3J/vZuKNTTli96zrvk+XUZW/oZgk/IunwVN me@mchal.lol</pre>
+      <button class="copy-btn" onclick="copyKey('ssh-key', this)">copy</button>
+      <span id="ssh-copied" style="font-size:x-small; opacity:0; margin-left:8px; color:var(--accent); transition: opacity 0.3s;">copied to clipboard!</span>
+    </div>
+
+    <div class="key-block" style="margin-top:1.2em;">
+      <h3>GPG</h3>
+      <pre id="gpg-key">-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+xjMEOuYTgBYJKwYBBAHaRw8BAQdAdk3qgrHqArG5Pvgxu8HRXLl9UxnS4AIIqSFK
+T50MOnHNH3Bhc3NlcG9ydCA8cGFzc2Vwb3J0QGxvY2FsaG9zdD7CgwQQFggAKwIZ
+AQUCadAZDQIbAwELARUBFgEnFiEEAsRc3gU7Mf99ReH6sfJUIebdZ3MACgkQsfJU
+IebdZ3P5CgEA8GqqtFB64hjTXg+cvBfjAcgt4xb0N1Xvm4hrBHNHbM4A/1EDq3uB
+INuaE9LjuuvMR5ZEgPrkBmpFOSHTNgH65X8IzjgEOuYTgBIKKwYBBAGXVQEFAQEH
+QGwCxBnsZLgJrOktrAA+spur7vx4/4w+l7HtU5CiLZkrAwEIB8J4BBgWCAAgBQJp
+0BkNAhsMFiEEAsRc3gU7Mf99ReH6sfJUIebdZ3MACgkQsfJUIebdZ3MYaQD/ZVKU
+tzxRZCtTqhDX+PUT+AbYBDWsicPIhkl0kWukDwQA/iCZAF0UcDYzZE6jrg8QIs28
+nvUjgKnCaGWHLB+QrdYMzjMEOuYTgBYJKwYBBAHaRw8BAQdA8cg8WGIaqhp3ZsGO
+25u6QctTihBV8iOzYo+GuaCQ+57CeAQYFggAIAUCadAZDQIbIBYhBALEXN4FOzH/
+fUXh+rHyVCHm3WdzAAoJELHyVCHm3WdzG64BAPq98rfPU08DgFmgUoQ87lxm1eSc
+0zmv2hQ4wHzR2FE7APwJNQ5o2EzN0gNJYe4Q4QUAtv7xDYRtlRHqzoTf1NLYBQ==
+=gish
+-----END PGP PUBLIC KEY BLOCK-----</pre>
+      <button class="copy-btn" onclick="copyKey('gpg-key', this)">copy</button>
+      <span id="gpg-copied" style="font-size:x-small; opacity:0; margin-left:8px; color:var(--accent); transition: opacity 0.3s;">copied to clipboard!</span>
+    </div>
+  </div>
+
+</div><!-- /page-keys -->
+
+
+<!-- ════════════════════════
+     SHARED FOOTER
+════════════════════════ -->
+<div class="main" style="margin-top: 24px; padding-bottom: 14px;">
+  <p class="friends-label">// friends' sites</p>
+  <div class="badges" style="text-align:center;">
+    <a href="https://mchal.lol"><img src="https://mchal.lol/image/michal.gif" alt="Michal" /></a><!--
+    --><a href="https://futile.eu"><img src="https://futile.eu/buttons/futile.png" alt="Futile" /></a><!--
+    --><a href="https://pinkro.se"><img src="https://pinkro.se/rose_88x31.png" alt="Rose" /></a><!--
+    --><iframe src="https://increm.net/badge?key=michal" title="incremnet badge" width="88" height="31" style="border: none; background: url('https://increm.net/bg.png'); display:inline-block; vertical-align:top;"></iframe>
+  </div>
+</div>
+
+<p class="footer-copy">Copyleft Nobody; Nothing is original and everything is derivative. All rights reversed.</p>
+
+<script>
+  const PAGES = ['home', 'about', 'keys'];
+
+  // Auto-calculate age from DOB
+  (function() {
+    const dob = new Date(2003, 5, 24); // months are 0-indexed; 5 = June
+    const now = new Date();
+    let age = now.getFullYear() - dob.getFullYear();
+    if (now < new Date(now.getFullYear(), dob.getMonth(), dob.getDate())) age--;
+    document.getElementById('age').textContent = age;
+  })();
+
+  window.showPage = function showPage(name) {
+    PAGES.forEach(p => {
+      document.getElementById('page-' + p).classList.remove('active');
+      document.getElementById('tab-' + p).classList.remove('active');
+    });
+    document.getElementById('page-' + name).classList.add('active');
+    document.getElementById('tab-' + name).classList.add('active');
+    document.title = name === 'home'
+      ? 'Michal S.'
+      : 'Michal S. \u2014 ' + name.charAt(0).toUpperCase() + name.slice(1);
+    window.scrollTo(0, 0);
+  }
+
+  window.toggleColorBlindMode = function toggleColorBlindMode() {
+    const s = document.documentElement.style;
+    s.setProperty('--div-background', 'rgb(0, 46, 48)');
+    s.setProperty('--accent', 'rgb(255, 227, 241)');
+    s.setProperty('--tabs-background', 'rgb(0, 36, 37)');
+  }
+
+  window.resetColors = function resetColors() {
+    const s = document.documentElement.style;
+    s.setProperty('--div-background', 'darkblue');
+    s.setProperty('--accent', 'yellow');
+    s.setProperty('--tabs-background', '#00006b');
+  }
+
+  window.copyKey = function copyKey(id, btn) {
+    navigator.clipboard.writeText(document.getElementById(id).textContent).then(() => {
+      const indicator = document.getElementById(id.replace('-key', '-copied'));
+      if (indicator) {
+        indicator.style.opacity = '1';
+        setTimeout(() => { indicator.style.opacity = '0'; }, 1800);
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
