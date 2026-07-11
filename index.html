@@ -348,6 +348,15 @@
     <p style="font-size:0.85em; opacity:0.65; margin-top:0.2em; margin-bottom:0.8em;">A selection of things I've built, led, or contributed to.</p>
 
     <div class="project-card">
+      <a class="proj-title" href="https://github.com/mchalunderscore/passeport" target="_blank" rel="noopener">Passeport</a>
+      <span class="proj-role">[ creator ]</span>
+      <p>A native macOS app that derives stable SSH, OpenPGP, age, and Minisign keys from one 24-word recovery phrase.</p>
+      <div class="proj-tags"><span>swift</span><span>rust</span><span>macos</span><span>cryptography</span></div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="project-card">
       <a class="proj-title" href="https://github.com/hermetomancy" target="_blank" rel="noopener">Grimoire</a>
       <span class="proj-role">[ sourcerer ]</span>
       <p>A Nix-ish Pacman-ish package manager with a nice CLI surface and atomic updates/rollback.</p>
@@ -447,7 +456,7 @@
 
     <div class="key-block">
       <h3>SSH</h3>
-      <pre id="ssh-key">ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAf5cBeXnPa2R8f03HMbK8SrwTKOkDA2qgAPDYj+Yi6a (none)</pre>
+      <pre id="ssh-key">ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDTYzu5B8SNJQOsIsorU6uvoiuQHjmbn3Gx9KmqJY2Yw passeport</pre>
       <button class="copy-btn" onclick="copyKey('ssh-key', this)">copy</button>
       <span id="ssh-copied" style="font-size:x-small; opacity:0; margin-left:8px; color:var(--accent); transition: opacity 0.3s;">copied to clipboard!</span>
     </div>
@@ -456,50 +465,38 @@
       <h3>PGP</h3>
       <pre id="pgp-key">-----BEGIN PGP PUBLIC KEY BLOCK-----
 
-mDMEajhAeBYJKwYBBAHaRw8BAQdAT0rxii+QClUItdYqIMIHeH7Bn2/HE+OW7JO1
-SvMyRxe0TU1pY2hhbCBTLiAoRGFpc3ksIERhaXN5LCBnaXZlIG1lIHlvdXIgYW5z
-d2VyIGRvLikgPG1pY2hhbF9zdG9weXJhQGljbG91ZC5jb20+iK8EExYKAFcWIQSQ
-uArMtWfUMmEAXE1tKxnQKikGPwUCajhAeBsUgAAAAAAEAA5tYW51MiwyLjUrMS4x
-MiwzLDMCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQbSsZ0CopBj/I
-qAD/ZukjJNeL+oAnuaxSgbyTxIMmuqujiKM/G1Rzlhe883kBAOGgKrzLzEwjC1VI
-wj8VRELEucpyhXM35KYIzqvZBjkAuQTVBWo4QHgIAAAEywMrZW4BB0BSN5FAe6jS
-7T6JHF4FleMmkYyYlMaV+zeZN6rKmGpUdQAABKD/677QpKCAlMqWsk2KMcmZhR2f
-AX6ykFcbLM4GulIM2noXhjhYU78S2nfrAZvD0Y7qOy3olCetxSji1YxP48iTiwb9
-BqV4uigGA7p8hgBU4kib84Gn9LV+lElK02lQKmqaJwswp78gJhjHChBaeZ/ricua
-uJK1o5oAJ5S8FGAJ8i4DEUO5ay4Y+jrsSZ10C7TrW54KpIhOqC/mJ049+wlsyGmS
-upRVa4FZN1LJ9bBiVZ9sFYokylv5xcbuWZe9WiVLYQ+hgT4+KnuGkrA28GxQErVw
-y6KFsqH5MiLE1h7YCMRpo2gUJ81Wgk982iiJJCKetSKxQHdvWz8TG5gEswYXMExZ
-8AXnoDw+kVprcEgK60f3sGP9pWNks1HfejmWkopo5zrQmXpsoLXdqZHQlhQLGEUH
-FQ27iMn9Zn0aMmtLATpL6Uq586iWg3ykZBRMykOoe4G6wVUA5l518ckO+oJapijn
-MMRv6zWCSKb1K2odE8NJsKLDNFAAdk83AmY3hTG7QaZ1fBkJTL3K4S/hGBEiaYfl
-g12pyE4jwVGgFmFiAp3ClZ38bECyKVJyYZM2VBKQAh/8Gp4z8LfEO4rC2sfG9cx5
-4SwdCcVHdhxvCUpfKaxGwbx3QCDF+8njuBk2IcnmuKaVzDrmwFIbtmHzCXy06M/E
-OWjqQp1Voxqbh7PiEgvrtxuIY0bkEFLmxaWNoxV9YxXk9oKrrCbmWHpCOE4x822O
-KgMGkYSB6bA0UYb3t4xZVwiGq7gaXG4+ULCetgeZOKv3EWKbhjevoIve5iklFy4p
-XK/K55LiVEsnUlelMnkJ1Zr7WDjBlXZk6KUDWXJIMCmW42SVcnP6wjLfdrItSjsD
-ZVKtB26Xu0lBJZu/xD7U07ne43+mpwOti28wdC0xN8B2Gmu1CHi/28vJJL7igSAf
-+oqukTNWeEwqonAVYbzTkIpcCRT4mryM2iKfMj7CpB9VuzFaCMKEEWUGs6hGS3Rp
-wSQRi7Ndusy6lyA627ENYwWMV49mggp2NAAMqLuuq1D8yg+1qED0gVdLqhdwzMdv
-iY5paVnooJ5T4whEmEcHG1iQ4RgPCHTLLBhAjMG61zYRJ3uuUafGubsOXMuMhFCm
-5h+9AIwBUDQw5h+y6xOPjDQ94Quxt4+OSoSQMiYiyKCD+7z89EHndGOCW8uo+yXF
-qiY+RzCBF8lK5yyTIHq6Gx0G5ZZUUFum+8Jpe2eoIjFi8F5POFznlnq/uQCoyIoF
-42X5wE31MikLKj/U+qZruZ0ldneX0zaByMplR0SYKqliJw1CyhLtYpUH91S1eKka
-gmxSAsJ94bHBaSlMiGycwkJQJj/w4aIzZ0P0RJ0IpQOnJQvVK8KQ2rcq4sUQlV3g
-hYNCjAckTDgYQxGeWifnesOOO4BnC0vUUD7o5MXmV0G1wXWNmUS+W0ymgkpUFZH0
-MKqgFJoli7Wu8BN4E1Xddh+5y5j2uXiYYWmOYHVVUwmt1UA1onaiRA+khb638ImJ
-yoB9NgeY5C3/eqMad5yMDA7eOklRcadi8wesIXCJcIpNesEj+wL4Nj6MvTZDh04u
-6FksUOXZg5zn46c8eoiUBBgWCgA8FiEEkLgKzLVn1DJhAFxNbSsZ0CopBj8FAmo4
-QHgbFIAAAAAABAAObWFudTIsMi41KzEuMTIsMywzAhsMAAoJEG0rGdAqKQY/n/sB
-AIqCChx1PNGw2Wjvr2OP7UPtSGR9wfVkyU4cN1EYILK7AQC7hVRi1PU2BnGk1SF0
-roIqcm5pLWUmzGnPbhtk+sjvB7gzBGo4QPwWCSsGAQQB2kcPAQEHQAf5cBeXnPa2
-R8f03HMbK8SrwTKOkDA2qgAPDYj+Yi6aiJQEGBYKADwWIQSQuArMtWfUMmEAXE1t
-KxnQKikGPwUCajhA/BsUgAAAAAAEAA5tYW51MiwyLjUrMS4xMiwzLDMCGyAACgkQ
-bSsZ0CopBj811wD/VVLRNzMYxEeGVcUk+S+PhhA9dApc5s7psKADWS+RvIEBAK5p
-xyQSP2mTsOoCkGad/6c7Gxhy1808iZtD2Sa/G5cL
-=vFdn
+xjMEaVW5ABYJKwYBBAHaRw8BAQdAsnc+gWGGsccSMsG/rIrizvhNmkHb6ETZg4Q6
+nN59NsXNTk1pY2hhbCBTLiAoRGFpc3ksIGRhaXN5LCBnaXZlIG1lIHlvdXIgYW5z
+d2VyLCBkbyEpIDxtaWNoYWxfc3RvcHlyYUBpY2xvdWQuY29tPsKDBBAWCAArAhkB
+BQJqUqHtAhsDAQsBFQEWAScWIQR8BWI7jaXSftOgDYOmOP9sdJPAlwAKCRCmOP9s
+dJPAl5gkAQCNVEMS7mHR79PVWvr0UvVmF2GFS0hvs8mtguMfeNU2PQD+JPKzE0EJ
+edGZgL2bK2aedAsonfs35JGSNnLZCIz47g/OOARpVbkAEgorBgEEAZdVAQUBAQdA
+sAWxBht8/baldbZbxQetIA/QB4E+0cvMbMuEddEUCwcDAQgHwngEGBYIACAFAmpS
+oe0CGwwWIQR8BWI7jaXSftOgDYOmOP9sdJPAlwAKCRCmOP9sdJPAlwEvAQCuF1dR
+qNuCiXyqdph3zh/BVYLHLpXIDDmxv11xlwfwswEA1N4xkwVA08hiC0oD9jheIGvG
+zHAnoVZWIdw1cHcC3AHOMwRpVbkAFgkrBgEEAdpHDwEBB0A02M7uQfEjSUDrCLKK
+1Orr6IrkB45m59xsfSpqiWNmMMJ4BBgWCAAgBQJqUqHtAhsgFiEEfAViO42l0n7T
+oA2Dpjj/bHSTwJcACgkQpjj/bHSTwJd3AQD+JCG7uxJOU605Omawztk0xb66J9Ku
+BR6ZggFJzcvyyMgBAMZVHtbuKZP6tilIbagNnWQAmtMjUSybiq3rB6pll1UB
+=6trm
 -----END PGP PUBLIC KEY BLOCK-----</pre>
       <button class="copy-btn" onclick="copyKey('pgp-key', this)">copy</button>
       <span id="pgp-copied" style="font-size:x-small; opacity:0; margin-left:8px; color:var(--accent); transition: opacity 0.3s;">copied to clipboard!</span>
+    </div>
+
+    <div class="key-block" style="margin-top:1.2em;">
+      <h3>AGE Recipient</h3>
+      <pre id="age-key">age1kqzmzpsm0n7mdft4kedu2padyq8aqpup8mguhnrvewz8t5g5pvrsljgj23</pre>
+      <button class="copy-btn" onclick="copyKey('age-key', this)">copy</button>
+      <span id="age-copied" style="font-size:x-small; opacity:0; margin-left:8px; color:var(--accent); transition: opacity 0.3s;">copied to clipboard!</span>
+    </div>
+
+    <div class="key-block" style="margin-top:1.2em;">
+      <h3>Minisign</h3>
+      <pre id="minisign-key">untrusted comment: minisign public key for Michal S. (Daisy, daisy, give me your answer, do!) &lt;michal_stopyra@icloud.com&gt;
+RWRQX1+NhClvY1BfX42EKW9jj1MdMtXwkwdFPRpJlJ2ORlbBQBjGayg4</pre>
+      <button class="copy-btn" onclick="copyKey('minisign-key', this)">copy</button>
+      <span id="minisign-copied" style="font-size:x-small; opacity:0; margin-left:8px; color:var(--accent); transition: opacity 0.3s;">copied to clipboard!</span>
     </div>
 
   </div>
